@@ -11,7 +11,8 @@ use App\Controller\HomeController;
     {
         if($_GET['action']=="listPost")
         {
-    
+            HomeController::listPost();
+            
         }elseif($_GET['action']=="post")
         {
     

@@ -1,5 +1,7 @@
 <?php
-    namespace App\Controller;
+namespace App\Controller;
+
+use App\Model\PostManager;
 
     class HomeController{
 
@@ -7,6 +9,14 @@
         {
 
             require("view/frontend/homeView.php");
+        }
+
+        public static function listPost(): void
+        {
+            $postManager = new PostManager();
+            $posts = $postManager->getPosts();
+
+            require ("view/frontend/listPostView.php");
         }
 
 
