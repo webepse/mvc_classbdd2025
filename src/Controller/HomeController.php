@@ -30,6 +30,39 @@ use App\Model\PostManager;
             require ("view/frontend/postView.php");
         }
 
+        public static function addComment(int $id)
+        {
+            $err = 0;
+            if(empty($_POST['author']))
+            {
+                $err= 1;
+            }else{
+                $author = htmlspecialchars($_POST['author']);
+            }
+            if(empty($_POST['comment']))
+            {
+                $err=2;
+            }else{
+                $comment= htmlspecialchars($_POST['comment']);
+            }
+
+            if($err == 0)
+            {
+                // appel au model
+                $commentManager = new CommentManager();
+                $addComment = $commentManager->addComment($id,$author,$comment);
+                if($addComment)
+                {
+                    header("LOCATION:index.php?action=post&id=".$id);
+                }else{
+                    header("LOCATION:index.php?action=post&id=".$id."&error=3");
+                }
+
+            }else{
+                header("LOCATION:index.php?action=post&id=".$id."&error=".$err);
+            }
+        }
+
         public static function error(string $message ,int $type): void
         {
             $errorMessage = $message;

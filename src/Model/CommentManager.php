@@ -13,5 +13,23 @@
 
             return $data;
         }
+
+        public function addComment(int $id, string $author, string $comment): bool
+        {
+            $insert = $this->dbConnect()->prepare("INSERT INTO comments(author,comment, comment_date, post_id) VALUES(:author,:comment,NOW(),:myid)");
+            $affectline = $insert->execute([
+                ":author" => $author,
+                ":comment" => $comment,
+                ":myid" => $id
+            ]);
+            $insert->closeCursor();
+
+            if($affectline){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
     }
 ?>

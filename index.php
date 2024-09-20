@@ -27,7 +27,17 @@ use App\Controller\HomeController;
             }else{
                 throw new \Exception("La page que vous cherchez n'existe pas");
             }
-        }elseif($_GET['action']=="home")
+        }elseif($_GET['action']=="addComment" && isset($_POST['author']))
+        {
+            if(isset($_GET['id']))
+            {
+                $id = htmlspecialchars($_GET['id']);
+                HomeController::addComment($id);
+            }else{
+                throw new \Exception("Il manque l'identifiant pour continuer..."); 
+            }
+        }
+        elseif($_GET['action']=="home")
         {
             HomeController::home();
         }else{

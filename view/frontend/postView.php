@@ -17,6 +17,25 @@
         </div>
     </div>
 <?php endforeach ?>
+<?php if(isset($_GET['error'])) : ?>
+
+    <div class='error'>Une erreur est survenue (code erreur: <?= $_GET['error'] ?> )</div>
+
+<?php endif ?>
+
+<form action="index.php?action=addComment&id=<?= $post->id ?>" method="POST">
+    <div>
+        <label for="author">Auteur: </label>
+        <input type="text" name="author" id="author">
+    </div>
+    <div>
+        <label for="comment">Commentaire: </label>
+        <textarea name="comment" id="comment"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Envoyer">
+    </div>
+</form>
 
 
 <?php $content = ob_get_clean(); ?>
