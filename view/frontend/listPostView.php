@@ -3,13 +3,14 @@
 <?php ob_start() ?>
 
 <h2>Ma page d'article</h2>
+<?php //var_dump($posts); ?>
 
 <?php foreach($posts as $post) : ?>
     <div class="news">
-        <h3><a href="#"><?= $post['title'] ?></a></h3>
-        <em>le <?= $post['creation_date'] ?></em>
+        <h3><a href="<?= $post->getURL() ?>"><?= $post->title ?></a></h3>
+        <em>le <?= $post->creation_date ?></em>
         <div>
-            <?= nl2br($post['content']) ?>
+            <?= $post->getExtrait() ?>
         </div>
     </div>
 
