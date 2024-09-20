@@ -19,6 +19,18 @@ use App\Model\PostManager;
             require ("view/frontend/listPostView.php");
         }
 
+        public static function error(string $message ,int $type): void
+        {
+            $errorMessage = $message;
+
+            if($type == 404)
+            {
+                require ("view/frontend/errorView.php");
+            }elseif($type == 403)
+            {
+                require ("view/frontend/errorAccessView.php");
+            }
+        }
 
 
 

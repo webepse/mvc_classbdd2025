@@ -21,6 +21,7 @@ use App\Controller\HomeController;
             HomeController::home();
         }else{
             // 404
+            throw new \Exception("La page que vous cherchez n'existe pas");
         }
     }else{
         // home
@@ -28,5 +29,6 @@ use App\Controller\HomeController;
     }
  }catch(\Exception $e)
  {
-
+    $errorMessage = $e->getMessage();
+    HomeController::error($errorMessage,404);
  }
