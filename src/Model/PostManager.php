@@ -19,4 +19,15 @@
             return $data;
         }
 
+        public function getPost(int $id): object
+        {
+            $req = $this->dbConnect()->prepare("SELECT * FROM posts WHERE id=?");
+            $req->execute([$id]);
+            $req->setFetchMode(PDO::FETCH_OBJ);
+            $data = $req->fetch();
+            $req->closeCursor();
+
+            return $data;
+        }
+
     }

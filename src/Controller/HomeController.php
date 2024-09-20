@@ -19,6 +19,14 @@ use App\Model\PostManager;
             require ("view/frontend/listPostView.php");
         }
 
+        public static function post(int $id): void
+        {
+            $postManager = new PostManager();
+            $post = $postManager->getPost($id);
+
+            require ("view/frontend/postView.php");
+        }
+
         public static function error(string $message ,int $type): void
         {
             $errorMessage = $message;

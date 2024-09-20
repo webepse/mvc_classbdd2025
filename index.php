@@ -15,7 +15,18 @@ use App\Controller\HomeController;
             
         }elseif($_GET['action']=="post")
         {
-    
+            if(isset($_GET['id']))
+            {
+                if(is_numeric($_GET['id']))
+                {
+                    $id = htmlspecialchars($_GET['id']);
+                    HomeController::post($id);
+                }else{
+                    throw new \Exception("La page que vous cherchez n'existe pas");
+                }
+            }else{
+                throw new \Exception("La page que vous cherchez n'existe pas");
+            }
         }elseif($_GET['action']=="home")
         {
             HomeController::home();
