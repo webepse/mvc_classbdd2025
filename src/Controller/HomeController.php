@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Model\CommentManager;
 use App\Model\PostManager;
 
     class HomeController{
@@ -22,6 +23,8 @@ use App\Model\PostManager;
         public static function post(int $id): void
         {
             $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $comments = $commentManager->getComments($id);
             $post = $postManager->getPost($id);
 
             require ("view/frontend/postView.php");

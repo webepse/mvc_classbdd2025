@@ -8,6 +8,15 @@
 <div>
     <?= nl2br($post->content) ?>
 </div>
+<h4>Les commentaires</h4>
+<?php foreach($comments as $comment) : ?>
+    <div class="comments">
+        <div class="info"><strong><?= $comment->author ?></strong> à <?= $comment->mydate ?></div>
+        <div class="content">
+            <?= nl2br($comment->comment) ?>
+        </div>
+    </div>
+<?php endforeach ?>
 
 
 <?php $content = ob_get_clean(); ?>
